@@ -7,6 +7,7 @@ public class MaximumXORofTwoNumbersinanArray {
             mask |= (1 << i);
             HashSet set = new HashSet();
             int tmp = ans | (1 << i);
+            //System.out.println(tmp);
             for (int j = 0; j < nums.length; j++) {
                 int num = nums[j] & mask;
                 if (set.contains(tmp ^ num)) {
@@ -17,5 +18,11 @@ public class MaximumXORofTwoNumbersinanArray {
             }
         }
         return ans;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {2, 3, 5, 25, 37, 23};
+        MaximumXORofTwoNumbersinanArray tmp = new MaximumXORofTwoNumbersinanArray();
+        tmp.findMaximumXOR(nums);
     }
 }
