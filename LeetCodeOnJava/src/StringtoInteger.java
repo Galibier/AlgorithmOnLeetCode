@@ -4,8 +4,12 @@ public class StringtoInteger {
         if (str.length() == 0) {
             return 0;
         }
+
         while (str.charAt(index) == ' ' && index < str.length()) {
             index++;
+            if (index == str.length()) {
+                return total * sign;
+            }
         }
 
         if (str.charAt(index) == '+' || str.charAt(index) == '-') {
