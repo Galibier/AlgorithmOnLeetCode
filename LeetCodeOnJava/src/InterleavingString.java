@@ -6,7 +6,7 @@ public class InterleavingString {
         int len1 = s1.length(), len2 = s2.length();
         boolean[][] dp = new boolean[len1 + 1][len2 + 1];
         for (int i = 0; i <= len1; i++) {
-            for (int j = 0; j < len2; j++) {
+            for (int j = 0; j <= len2; j++) {
                 if (i == 0 && j == 0) {
                     dp[i][j] = true;
                 } else {
