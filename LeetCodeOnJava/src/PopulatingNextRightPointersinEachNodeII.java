@@ -1,5 +1,5 @@
-public class PopulatingNextRightPointersinEachNode {
-    public void connect(TreeLinkNode root){
+public class PopulatingNextRightPointersinEachNodeII {
+    public void connect(TreeLinkNode root) {
         TreeLinkNode dummyHead = new TreeLinkNode(0);
         TreeLinkNode pre = dummyHead;
         while (root != null) {
