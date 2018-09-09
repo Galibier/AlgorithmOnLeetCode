@@ -12,6 +12,7 @@ public class ConstructBinaryTreefromPreorderandInorderTraversal {
         for (int i = inStart; i <= inEnd; i++) {
             if (inorder[i] == root.val) {
                 index = i;
+                break;
             }
         }
         root.left = helper(preStart + 1, inStart, index - 1, preorder, inorder);
