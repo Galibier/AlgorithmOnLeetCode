@@ -6,6 +6,8 @@
 *     ListNode(int x) : val(x), next(NULL) {}
 * };
 */
+#include "head_file.h"
+
 class Solution {
 public:
 	ListNode * addTwoNumbers(ListNode* l1, ListNode* l2) {
