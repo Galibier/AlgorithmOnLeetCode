@@ -1,42 +1,51 @@
+#include <list>
+#include <unordered_map>
+
+using namespace std;
+
 class LRUCache {
 public:
-	LRUCache(int capacity) :_capacity(capacity) {}
+    LRUCache(int capacity):size(capacity) {}
 
-	int get(int key) {
-		auto it = cache.find(key);
-		if (it == cache.end())
-			return -1;
-		touch(it);
-		return it->second.first;
-	}
+    int get(int key) {
+        if(cacheKeys.find(key)==cacheKeys.end()){
+            return -1;
+        }
+        else{
+            list<pair<int, int>>::iterator data = cacheKeys[key];
+            cacheList.erase(data);
+            cacheList.push_front(*data);
+            cacheKeys[key]=cacheList.begin();
+            return data->second;
+        }
+    }
 
-	void put(int key, int value) {
-		auto it = cache.find(key);
-		if (it != cache.end())
-			touch(it);
-		else {
-			if (cache.size() == _capacity) {
-				cache.erase(used.back());
-				used.pop_back();
-			}
-			used.push_front(key);
-		}
-		cache[key] = { value, used.begin() };
-	}
+    void put(int key, int value) {
+        if(cacheKeys.find(key)!=cacheKeys.end()){
+            list<pair<int, int>>::iterator data = cacheKeys[key];
+            cacheList.erase(data);
+            data->second = value;
+            cacheList.push_front(*data);
+            cacheKeys[key]=cacheList.begin();
+        }
+        else{
+            if(cacheList.size()<size){
+                cacheList.push_front(pair<int, int>(key, value));
+                cacheKeys[key] = cacheList.begin();
+            }
+            else{
+                cacheKeys.erase(cacheList.back().first);
+                cacheList.pop_back();
+                cacheList.push_front(pair<int, int>(key, value));
+                cacheKeys[key] = cacheList.begin();
+            }
+        }
+    }
+
 private:
-	typedef list<int> LI;
-	typedef pair<int, LI::iterator> PII;
-	typedef unordered_map<int, PII> HIPII;
-
-	void touch(HIPII::iterator it) {
-		int key = it->first;
-		used.erase(it->second.second);
-		used.push_front(key);
-		it->second.second = used.begin();
-	}
-	HIPII cache;
-	LI used;
-	int _capacity;
+    list<pair<int, int>> cacheList;
+    unordered_map<int, list<pair<int, int>>::iterator> cacheKeys;
+    int size = 0;
 };
 
 /**
