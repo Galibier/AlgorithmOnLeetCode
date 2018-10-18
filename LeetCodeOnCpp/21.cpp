@@ -1,3 +1,5 @@
+#include "head_file.h"
+
 /**
 * Definition for singly-linked list.
 * struct ListNode {
@@ -8,24 +10,22 @@
 */
 class Solution {
 public:
-	ListNode * mergeTwoLists(ListNode* l1, ListNode* l2) {
-		ListNode dummy(INT_MIN);
-		ListNode *tail = &dummy;
+    ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
+        ListNode dummy(0);
+        ListNode *curr = &dummy;
 
-		while (l1 && l2) {
-			if (l1->val < l2->val) {
-				tail->next = l1;
-				l1 = l1->next;
-			}
-			else {
-				tail->next = l2;
-				l2 = l2->next;
-			}
-			tail = tail->next;
-		}
+        while (l1 && l2) {
+            if (l1->val < l2->val) {
+                curr->next = l1;
+                l1 = l1->next;
+            } else {
+                curr->next = l2;
+                l2 = l2->next;
+            }
+            curr = curr->next;
+        }
 
-		tail->next = l1 ? l1 : l2;
-		return dummy.next;
-
-	}
+        curr->next = l1 ? l1 : l2;
+        return dummy.next;
+    }
 };
