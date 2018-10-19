@@ -1,3 +1,5 @@
+#include "head_file.h"
+
 /**
 * Definition for singly-linked list.
 * struct ListNode {
@@ -8,29 +10,30 @@
 */
 class Solution {
 private:
-	ListNode * reverse(ListNode* first, ListNode* last) {
-		ListNode* prev = last;
+    ListNode *reverse(ListNode *first, ListNode *last) {
+        ListNode *prev = last;
 
-		while (first != last) {
-			auto tmp = first->next;
-			first->next = prev;
-			prev = first;
-			first = tmp;
-		}
+        while (first != last) {
+            auto tmp = first->next;
+            first->next = prev;
+            prev = first;
+            first = tmp;
+        }
 
-		return prev;
-	}
+        return prev;
+    }
+
 public:
-	ListNode * reverseKGroup(ListNode* head, int k) {
-		auto node = head;
-		for (int i = 0; i < k; ++i) {
-			if (!node)
-				return head;
-			node = node->next;
-		}
+    ListNode *reverseKGroup(ListNode *head, int k) {
+        auto node = head;
+        for (int i = 0; i < k; ++i) {
+            if (!node)
+                return head;
+            node = node->next;
+        }
 
-		auto new_head = reverse(head, node);
-		head->next = reverseKGroup(node, k);
-		return new_head;
-	}
+        auto new_head = reverse(head, node);
+        head->next = reverseKGroup(node, k);
+        return new_head;
+    }
 };
