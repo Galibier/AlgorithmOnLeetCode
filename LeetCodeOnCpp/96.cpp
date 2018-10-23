@@ -1,10 +1,17 @@
+#include "head_file.h"
+
 class Solution {
 public:
-	int numTrees(int n) {
-		long long ans = 1;
-		for (int i = n + 1; i <= 2 * n; i++) {
-			ans = ans * i / (i - n);
-		}
-		return ans / (n + 1);
-	}
+    int numTrees(int n) {
+        vector<int> cnt = vector<int>(n + 1);
+        cnt[0] = cnt[1] = 1;
+
+        for (int i = 2; i <= n; ++i) {
+            for (int j = 1; j <= i; ++j) {
+                cnt[i] += cnt[j - 1] * cnt[i - j];
+            }
+        }
+
+        return cnt[n];
+    }
 };

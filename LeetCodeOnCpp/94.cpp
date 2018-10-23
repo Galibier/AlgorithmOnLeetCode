@@ -1,3 +1,5 @@
+#include "head_file.h"
+
 /**
 * Definition for a binary tree node.
 * struct TreeNode {
@@ -9,23 +11,22 @@
 */
 class Solution {
 public:
-	vector<int> inorderTraversal(TreeNode *root) {
-		vector<int> ret;
-		stack<TreeNode*> stk;
-		TreeNode *cur = root;
+    vector<int> inorderTraversal(TreeNode *root) {
+        vector<int> ret;
+        stack<TreeNode *> stk;
+        TreeNode *cur = root;
 
-		while (!stk.empty() || cur != nullptr) {
-			if (cur != nullptr) {
-				stk.push(cur);
-				cur = cur->left;
-			}
-			else {
-				TreeNode *pNode = stk.top();
-				ret.push_back(pNode->val);
-				stk.pop();
-				cur = pNode->right;
-			}
-		}
-		return ret;
-	}
+        while (!stk.empty() || cur != nullptr) {
+            if (cur != nullptr) {
+                stk.push(cur);
+                cur = cur->left;
+            } else {
+                TreeNode *pNode = stk.top();
+                ret.push_back(pNode->val);
+                stk.pop();
+                cur = pNode->right;
+            }
+        }
+        return ret;
+    }
 };
