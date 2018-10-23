@@ -1,11 +1,13 @@
+#include "head_file.h"
+
 class Solution {
 public:
-    int removeDuplicates(vector<int>& nums) {
+    int removeDuplicates(vector<int> &nums) {
         int n = nums.size(), count = 0;
         for (int i = 2; i < n; i++)
-            if (nums[i] == nums[i - 2 - count]) 
+            if (nums[i] == nums[i - 2 - count])
                 count++;
-            else 
+            else
                 nums[i - count] = nums[i];
         return n - count;
     }
