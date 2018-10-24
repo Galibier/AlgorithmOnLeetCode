@@ -1,3 +1,5 @@
+#include "head_file.h"
+
 /**
 * Definition for a binary tree node.
 * struct TreeNode {
@@ -9,18 +11,18 @@
 */
 class Solution {
 public:
-	int maxPathSum(TreeNode *root) {
-		int maxPath = INT_MIN;
-		dfsMaxPath(root, maxPath);
-		return maxPath;
-	}
+    int maxPathSum(TreeNode *root) {
+        int maxPath = INT_MIN;
+        dfsMaxPath(root, maxPath);
+        return maxPath;
+    }
 
-	int dfsMaxPath(TreeNode *root, int &maxPath) {
-		if (root==nullptr) 
-			return 0;
-		int l = max(0, dfsMaxPath(root->left, maxPath));
-		int r = max(0, dfsMaxPath(root->right, maxPath));
-		maxPath = max(maxPath, l + r + root->val);
-		return root->val + max(l, r);
-	}
+    int dfsMaxPath(TreeNode *root, int &maxPath) {
+        if (root == nullptr)
+            return 0;
+        int left = max(0, dfsMaxPath(root->left, maxPath));
+        int right = max(0, dfsMaxPath(root->right, maxPath));
+        maxPath = max(maxPath, left + right + root->val);
+        return root->val + max(left, right);
+    }
 };
