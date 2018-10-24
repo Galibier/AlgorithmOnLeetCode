@@ -1,3 +1,5 @@
+#include "head_file.h"
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -9,21 +11,21 @@
  */
 class Solution {
 public:
-bool hasPathSum(TreeNode* root, int target) {
-	return postOrder(root, 0, target);
-}
+    bool hasPathSum(TreeNode *root, int target) {
+        return postOrder(root, 0, target);
+    }
 
-bool postOrder(TreeNode* root, int sum, int target) {
-    if (root == nullptr)
-		return false;
-	if (root->left== nullptr&&root->right==nullptr)
-		return sum+root->val == target;
-	bool left = false;
-	bool right = false;
-	if (root->left)
-		left = postOrder(root->left, sum+root->val, target);
-	if (root->right)
-		right = postOrder(root->right, sum + root->val, target);
-	return left | right;
-}
+    bool postOrder(TreeNode *root, int sum, int target) {
+        if (root == nullptr)
+            return false;
+        if (root->left == nullptr && root->right == nullptr)
+            return sum + root->val == target;
+        bool left = false;
+        bool right = false;
+        if (root->left)
+            left = postOrder(root->left, sum + root->val, target);
+        if (root->right)
+            right = postOrder(root->right, sum + root->val, target);
+        return left | right;
+    }
 };

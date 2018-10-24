@@ -1,3 +1,5 @@
+#include "head_file.h"
+
 /**
 * Definition for a binary tree node.
 * struct TreeNode {
@@ -9,21 +11,21 @@
 */
 class Solution {
 public:
-	bool isSymmetric(TreeNode *root) {
-		if (root == nullptr)
-			return true;
-		return helper(root->left, root->right);
-	}
+    bool isSymmetric(TreeNode *root) {
+        if (root == nullptr)
+            return true;
+        return helper(root->left, root->right);
+    }
 
-	bool helper(TreeNode* p, TreeNode* q) {
-		if (p == nullptr && q == nullptr)
-			return true;
-		else if (p == nullptr || q == nullptr)
-			return false;
+    bool helper(TreeNode *p, TreeNode *q) {
+        if (p == nullptr && q == nullptr)
+            return true;
+        else if (p == nullptr || q == nullptr)
+            return false;
 
-		if (p->val != q->val)
-			return false;
+        if (p->val != q->val)
+            return false;
 
-		return helper(p->left, q->right) && helper(p->right, q->left);
-	}
+        return helper(p->left, q->right) && helper(p->right, q->left);
+    }
 };

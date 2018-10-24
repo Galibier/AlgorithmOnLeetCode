@@ -1,3 +1,5 @@
+#include "head_file.h"
+
 /**
 * Definition for a binary tree node.
 * struct TreeNode {
@@ -9,17 +11,17 @@
 */
 class Solution {
 public:
-	bool isBalanced(TreeNode* root) {
-		return postOrder(root) == -1 ? false : true;
-	}
+    bool isBalanced(TreeNode *root) {
+        return postOrder(root) == -1 ? false : true;
+    }
 
-	int postOrder(TreeNode *root) {
-		if (root == nullptr)
-			return 0;
-		int l = postOrder(root->left);
-		int r = postOrder(root->right);
-		if (l == -1 || r == -1 || abs(l - r) > 1)
-			return -1;
-		return max(l, r) + 1;
-	}
+    int postOrder(TreeNode *root) {
+        if (root == nullptr)
+            return 0;
+        int left = postOrder(root->left);
+        int right = postOrder(root->right);
+        if (left == -1 || right == -1 || abs(left - right) > 1)
+            return -1;
+        return max(left, right) + 1;
+    }
 };

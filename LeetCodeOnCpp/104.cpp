@@ -1,3 +1,5 @@
+#include "head_file.h"
+
 /**
 * Definition for a binary tree node.
 * struct TreeNode {
@@ -9,21 +11,21 @@
 */
 class Solution {
 public:
-	int maxDepth(TreeNode* root) {
-		if (root == nullptr)
-			return 0;
-		queue<pair<TreeNode*, int>> que;
-		int depth = 1;
-		que.push(make_pair(root, depth));
-		while (!que.empty()) {
-			auto tmp = que.front();
-			depth = tmp.second;
-			que.pop();
-			if (tmp.first->left)
-				que.push(make_pair(tmp.first->left, depth + 1));
-			if (tmp.first->right)
-				que.push(make_pair(tmp.first->right, depth + 1));
-		}
-		return depth;
-	}
+    int maxDepth(TreeNode *root) {
+        if (root == nullptr)
+            return 0;
+        queue<pair<TreeNode *, int>> que;
+        int depth = 1;
+        que.push(make_pair(root, depth));
+        while (!que.empty()) {
+            auto tmp = que.front();
+            depth = tmp.second;
+            que.pop();
+            if (tmp.first->left)
+                que.push(make_pair(tmp.first->left, depth + 1));
+            if (tmp.first->right)
+                que.push(make_pair(tmp.first->right, depth + 1));
+        }
+        return depth;
+    }
 };
