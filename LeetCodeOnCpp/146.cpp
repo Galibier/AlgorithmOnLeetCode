@@ -1,45 +1,35 @@
-#include <list>
-#include <unordered_map>
-
-using namespace std;
+#include "head_file.h"
 
 class LRUCache {
 public:
-    LRUCache(int capacity):size(capacity) {}
+    LRUCache(int capacity) : size(capacity) {}
 
     int get(int key) {
-        if(cacheKeys.find(key)==cacheKeys.end()){
+        if (cacheKeys.find(key) == cacheKeys.end()) {
             return -1;
-        }
-        else{
+        } else {
             list<pair<int, int>>::iterator data = cacheKeys[key];
             cacheList.erase(data);
             cacheList.push_front(*data);
-            cacheKeys[key]=cacheList.begin();
+            cacheKeys[key] = cacheList.begin();
             return data->second;
         }
     }
 
     void put(int key, int value) {
-        if(cacheKeys.find(key)!=cacheKeys.end()){
+        if (cacheKeys.find(key) != cacheKeys.end()) {
             list<pair<int, int>>::iterator data = cacheKeys[key];
             cacheList.erase(data);
             data->second = value;
             cacheList.push_front(*data);
-            cacheKeys[key]=cacheList.begin();
-        }
-        else{
-            if(cacheList.size()<size){
-                cacheList.push_front(pair<int, int>(key, value));
-                cacheKeys[key] = cacheList.begin();
-            }
-            else{
+        } else {
+            if (cacheList.size() == size) {
                 cacheKeys.erase(cacheList.back().first);
                 cacheList.pop_back();
-                cacheList.push_front(pair<int, int>(key, value));
-                cacheKeys[key] = cacheList.begin();
             }
+            cacheList.push_front(pair<int, int>(key, value));
         }
+        cacheKeys[key] = cacheList.begin();
     }
 
 private:
